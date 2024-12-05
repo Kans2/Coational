@@ -9,7 +9,7 @@ const PatientInfo = ({ patient }) => {
             <p>Age: {patient.age}</p>
             <p>Gender: {patient.gender}</p>
             <p>Date of Birth: {patient.date_of_birth}</p>
-            <p>Contact Info: {patient.contactInfo || 'N/A'}</p>
+            <p>Contact Info: {patient.emergency_contact || 'N/A'}</p>
         </div>
     );
 };

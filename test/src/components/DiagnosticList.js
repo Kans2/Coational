@@ -1,32 +1,20 @@
-// src/components/DiagnosticList.js
 import React from 'react';
 
 const DiagnosticList = ({ diagnostics }) => {
-    if (!diagnostics || diagnostics.length === 0) return <p>No diagnostic data available.</p>;
+    if (!diagnostics || diagnostics.length === 0) {
+        return <p>No diagnostics available.</p>;
+    }
 
     return (
-        <table>
-            <thead>
-                <tr>
-                    <th>Problem/Diagnosis</th>
-                    <th>Description</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
+        <div className="diagnostic-list">
+            <h3>Diagnostics</h3>
+            <ul>
                 {diagnostics.map((item, index) => (
-                    <tr key={index}>
-                        <td>{item.problem}</td>
-                        <td>{item.description}</td>
-                        <td>{item.status}</td>
-                    </tr>
+                    <li key={index}>{item.name || `Diagnosis ${index + 1}`}</li>
                 ))}
-            </tbody>
-        </table>
+            </ul>
+        </div>
     );
 };
 
 export default DiagnosticList;
-
-
-
