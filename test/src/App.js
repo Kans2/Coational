@@ -5,6 +5,7 @@ import BloodPressureGraph from './components/BloodPressureGraph';
 import DiagnosisCards from './components/DiagnosisCards';
 import DiagnosticList from './components/DiagnosticList';
 import LabResults from './components/LabResults';
+//import Pressure from './components/Pressure';
 
 const App = () => {
     const [patient, setPatient] = useState(null);
@@ -41,16 +42,45 @@ const App = () => {
     if (!patient) return <p>Loading patient data...</p>;
 
     return (
-        <div className="app">
+        <div className="app-container">
+        {/* Sidebar (Left Sidebar) */}
+        <div className="sidebar">
             <Sidebar />
-            <main>
-                <PatientInfo patient={patient} />
-                <BloodPressureGraph data={patient.bloodPressureHistory || []} />
-                <DiagnosisCards diagnosis={patient.diagnosisOverview || {}} />
-                <DiagnosticList diagnostics={patient.diagnostic_list || []} />
-                <LabResults results={patient.lab_results || []} />
-            </main>
         </div>
+    
+        {/* Main Content */}
+        <div className="main-content">
+            {/* Blood Pressure Graph */}
+            <div className="blood-pressure-graph">
+                <BloodPressureGraph data={patient.diagnosis_history || []} />
+            </div>
+    
+            {/* Diagnosis Cards */}
+            <div className="diagnosis-cards">
+                <DiagnosisCards diagnosis={patient.diagnosis_history|| {}} />
+            </div>
+    
+            {/* Diagnostic List */}
+            <div className="diagnostic-list">
+                <DiagnosticList diagnostics={patient.diagnostic_list || []} />
+            </div>
+        </div>
+    
+        {/* Right Sidebar */}
+        <div className="right-sidebar">
+            {/* Patient Info */}
+            <div className="patient-info">
+                <PatientInfo patient={patient} />
+            </div>
+    
+            {/* Lab Results */}
+            <div className="lab-results">
+                <LabResults results={patient.lab_results || []} />
+            </div>
+        </div>
+    </div>
+    
+    
     );
 };
 
