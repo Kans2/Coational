@@ -43,37 +43,37 @@ const App = () => {
 
     return (
         <div className="app-container">
-        {/* Sidebar (Left Sidebar) */}
+       
         <div className="sidebar">
             <Sidebar />
         </div>
     
-        {/* Main Content */}
+   
         <div className="main-content">
-            {/* Blood Pressure Graph */}
+          
             <div className="blood-pressure-graph">
                 <BloodPressureGraph data={patient.diagnosis_history || []} />
             </div>
     
-            {/* Diagnosis Cards */}
+           
             <div className="diagnosis-cards">
                 <DiagnosisCards diagnosis={patient.diagnosis_history|| {}} />
             </div>
     
-            {/* Diagnostic List */}
+         
             <div className="diagnostic-list">
                 <DiagnosticList diagnostics={patient.diagnostic_list || []} />
             </div>
         </div>
     
-        {/* Right Sidebar */}
+      
         <div className="right-sidebar">
-            {/* Patient Info */}
+         
             <div className="patient-info">
                 <PatientInfo patient={patient} />
             </div>
     
-            {/* Lab Results */}
+            
             <div className="lab-results">
                 <LabResults results={patient.lab_results || []} />
             </div>
