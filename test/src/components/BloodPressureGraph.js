@@ -91,10 +91,10 @@ const BloodPressureGraph = ({ data }) => {
 
     return (
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-        <div style={{ height: '400px', width: '70%' }}>
+        <div style={{ height: '400px', width: '60%' }}>
             <Line data={chartData} options={options} />
         </div>
-        <div style={{ width: '30%', paddingLeft: '20px' ,boxShadow:'box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)'}}>
+        <div style={{ width: '40%', paddingLeft: '20px' ,boxShadow:'box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)'}}>
         {data.length > 0 && (
     <div key={data.length - 1}>
        <p>systolic</p>

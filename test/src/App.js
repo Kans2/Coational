@@ -43,42 +43,42 @@ const App = () => {
 
     return (
         <div className="app-container">
-       
-        <div className="sidebar">
+    <aside className="sidebar">
+        <nav>
             <Sidebar />
-        </div>
-    
-   
-        <div className="main-content">
-          
-            <div className="blood-pressure-graph">
-                <BloodPressureGraph data={patient.diagnosis_history || []} />
-            </div>
-    
-           
-            <div className="diagnosis-cards">
-                <DiagnosisCards diagnosis={patient.diagnosis_history|| {}} />
-            </div>
-    
-         
-            <div className="diagnostic-list">
-                <DiagnosticList diagnostics={patient.diagnostic_list || []} />
-            </div>
-        </div>
-    
-      
-        <div className="right-sidebar">
-         
-            <div className="patient-info">
-                <PatientInfo patient={patient} />
-            </div>
-    
-            
-            <div className="lab-results">
-                <LabResults results={patient.lab_results || []} />
-            </div>
-        </div>
-    </div>
+        </nav>
+    </aside>
+
+    <main className="main-content">
+        <section className="blood-pressure-graph">
+            <h2>diagnosis History</h2>
+            <BloodPressureGraph data={patient.diagnosis_history || []} />
+        </section>
+
+        <section className="diagnosis-cards">
+            <h2>Diagnosis</h2>
+            <DiagnosisCards diagnosis={patient.diagnosis_history || {}} />
+        </section>
+
+        <section className="diagnostic-list">
+            <h2>Diagnostic List</h2>
+            <DiagnosticList diagnostics={patient.diagnostic_list || []} />
+        </section>
+    </main>
+
+    <aside className="right-sidebar">
+        <section className="patient-info">
+            <h2>Patient Information</h2>
+            <PatientInfo patient={patient} />
+        </section>
+
+        <section className="lab-results">
+            <h2>Lab Results</h2>
+            <LabResults results={patient.lab_results || []} />
+        </section>
+    </aside>
+</div>
+
     
     
     );
