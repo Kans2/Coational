@@ -9,36 +9,49 @@ import LabResults from './components/LabResults';
 
 const App = () => {
     const [patient, setPatient] = useState(null);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const API_ENDPOINT = 'https://fedskillstest.coalitiontechnologies.workers.dev';
-        const USERNAME = 'coalition'; 
-        const PASSWORD = 'skills-test'; 
 
         
+        // you can set REACT_APP_USERNAME and REACT_APP_PASSWORD in a .env file
+        // (these are replaced at build time by Create React App)
+        // const username = process.env.REACT_APP_USERNAME || '';
+        // const password = process.env.REACT_APP_PASSWORD || '';
+
+        // if (!username || !password) {
+        //     setError('Missing API credentials – please define REACT_APP_USERNAME and REACT_APP_PASSWORD and restart the dev server.');
+        //     return;
+        // }
+
         fetch(API_ENDPOINT, {
             method: 'GET',
             headers: {
-                'Authorization': `Basic ${btoa(`${USERNAME}:${PASSWORD}`)}`, 
+                // avoid importing dotenv in frontend; credentials should be handled securely
+                'Authorization': `Basic ${btoa('coalition:skills-test')}`,
                 'Content-Type': 'application/json',
             },
         })
             .then(response => {
                 if (!response.ok) {
+                    // propagate status to catch
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 return response.json();
             })
             .then(data => {
-            
                 const jessica = data.find(p => p.name === 'Jessica Taylor');
                 setPatient(jessica);
-
-                console.log("jesica data",jessica);
+                console.log("jesica data", jessica);
             })
-            .catch(error => console.error('Error fetching data:', error));
+            .catch(err => {
+                console.error('Error fetching data:', err);
+                setError(err.message);
+            });
     }, []);
 
+    if (error) return <p className="error">Error: {error}</p>;
     if (!patient) return <p>Loading patient data...</p>;
 
     return (
