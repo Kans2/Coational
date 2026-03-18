@@ -90,26 +90,27 @@ const BloodPressureGraph = ({ data }) => {
     };
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-        <div style={{ height: '400px', width: '60%' }}>
-            <Line data={chartData} options={options} />
+        <div className="blood-pressure-container">
+            <div className="chart-section">
+                <Line data={chartData} options={options} />
+            </div>
+            <div className="stats-section">
+                {data.length > 0 && (
+                    <div className="blood-pressure-stats">
+                        <div className="stat-item systolic">
+                            <span className="stat-label">Systolic</span>
+                            <span className="stat-value">{data[data.length - 1].blood_pressure.systolic.value}</span>
+                            <span className="stat-status">{data[data.length - 1].blood_pressure.systolic.levels}</span>
+                        </div>
+                        <div className="stat-item diastolic">
+                            <span className="stat-label">Diastolic</span>
+                            <span className="stat-value">{data[data.length - 1].blood_pressure.diastolic.value}</span>
+                            <span className="stat-status">{data[data.length - 1].blood_pressure.diastolic.levels}</span>
+                        </div>
+                    </div>
+                )}
+            </div>
         </div>
-        <div style={{ width: '40%', paddingLeft: '20px' ,boxShadow:'box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)'}}>
-        {data.length > 0 && (
-    <div key={data.length - 1}>
-       <p>systolic</p>
-      <p>{data[data.length - 1].blood_pressure.systolic.value} </p>
-      <p>{data[data.length - 1].blood_pressure.systolic.levels}</p>
-      <br></br>
-      <p>diastolic</p>
-      <p>{data[data.length - 1].blood_pressure.diastolic.value} </p>
-      <p>{data[data.length - 1].blood_pressure.diastolic.levels}</p>
-
-    </div>
-  )}
-        </div>
-        </div>
-      
     );
 };
 
