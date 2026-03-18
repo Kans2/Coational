@@ -20,17 +20,17 @@ jobs:
 
       - name: Installing dependencies
         run: npm install
-        working-directory: test
+        working-directory: ./test
         continue-on-error: false
 
       - name: Run react testing
         run: npm test -- --watchAll=false
-        working-directory: test
+        working-directory: ./test
         continue-on-error: false
 
       - name: Run the build
         run: npm run build
-        working-directory: test
+        working-directory: ./test
         continue-on-error: false
 
       - name: publish to Netlify
