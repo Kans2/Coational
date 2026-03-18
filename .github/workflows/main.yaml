@@ -33,11 +33,11 @@ jobs:
         working-directory: test
         continue-on-error: false
 
-        -name: publish to Netlify
-         uses: netlify/actions/cli@master
-         with:
-           args: deploy --dir=test/build --prod
-         env
-           NETLIFY_SITE_ID: ${{secrets.NETLIFY_SITE_ID}}
-           NETLIFY_AUTH_TOKEN: ${{secrets.NETLIFY_AUTH_TOKEN}}
-         continue-on-err: false
+      - name: publish to Netlify
+        uses: netlify/actions/cli@master
+        with:
+          args: deploy --dir=build --prod
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        continue-on-error: false
