@@ -1,0 +1,39 @@
+name: react work flow 
+
+on:
+    push:
+        branches:
+            -main
+
+
+job:
+    build: 
+        runs-on:ubuntu-latest
+
+        steps:
+           -name:Checkout code
+            uses:actions/checkout@v3
+
+           -name:Set up Nodejs
+            uses:actions/setup-node@v3
+            with:
+             node-version: 20
+
+            -name:installing dependecies
+             run:npm install
+             working-directory:test
+             continue-on-error:false
+
+            -name:Run react testing
+             run:npm test -- --watchAll=false
+             working-directory:test
+             continue-on-error:false
+
+            -name:Run the build
+             run:npm run build
+             working-directory:test
+             continue-on-error:false
+             
+    
+       
+        
