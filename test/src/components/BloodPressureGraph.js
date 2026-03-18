@@ -55,12 +55,18 @@ const BloodPressureGraph = ({ data }) => {
                 display: true,
                 text: 'Blood Pressure Trends',
                 font: {
-                    size: 16,
+                    size: 14,
                 },
             },
             legend: {
                 display: true,
                 position: 'top',
+                labels: {
+                    boxWidth: 12,
+                    font: {
+                        size: 12,
+                    },
+                },
             },
         },
         scales: {
@@ -69,7 +75,12 @@ const BloodPressureGraph = ({ data }) => {
                     display: true,
                     text: 'Month',
                     font: {
-                        size: 14,
+                        size: 12,
+                    },
+                },
+                ticks: {
+                    font: {
+                        size: 10,
                     },
                 },
             },
@@ -78,12 +89,15 @@ const BloodPressureGraph = ({ data }) => {
                     display: true,
                     text: 'Pressure (mmHg)',
                     font: {
-                        size: 14,
+                        size: 12,
                     },
                 },
                 min: 0,
                 ticks: {
                     stepSize: 20,
+                    font: {
+                        size: 10,
+                    },
                 },
             },
         },
