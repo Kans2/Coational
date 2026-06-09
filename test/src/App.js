@@ -8,6 +8,7 @@ import LabResults from './components/LabResults';
 //import Pressure from './components/Pressure';
 
 const App = () => {
+    const [patients, setPatients] = useState([]);
     const [patient, setPatient] = useState(null);
     const [error, setError] = useState(null);
 
@@ -42,7 +43,8 @@ const App = () => {
                 return response.json();
             })
             .then(data => {
-                const jessica = data.find(p => p.name === 'Jessica Taylor');
+                setPatients(data);
+                const jessica = data.find(p => p.name === 'Jessica Taylor') || data[0];
                 setPatient(jessica);
                 console.log("jesica data", jessica);
             })
@@ -53,13 +55,27 @@ const App = () => {
     }, []);
 
     if (error) return <p className="error">Error: {error}</p>;
-    if (!patient) return <p>Loading patient data...</p>;
+    if (!patient) {
+        return (
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#f5f6fa' }}>
+                <svg width="60" height="60" viewBox="0 0 50 50" style={{ animation: 'spin 1s linear infinite' }}>
+                    <circle cx="25" cy="25" r="20" fill="none" stroke="#e2e8f0" strokeWidth="4"></circle>
+                    <circle cx="25" cy="25" r="20" fill="none" stroke="#007aff" strokeWidth="4" strokeDasharray="31.4 100" strokeLinecap="round"></circle>
+                </svg>
+                <style>
+                    {`@keyframes spin { 100% { transform: rotate(360deg); } }`}
+                </style>
+                <h2 style={{ marginTop: '24px', color: '#1a202c', fontFamily: "'Inter', sans-serif", fontSize: '20px', fontWeight: '600' }}>Loading Dashboard</h2>
+                <p style={{ color: '#718096', fontFamily: "'Inter', sans-serif", marginTop: '8px', fontSize: '14px' }}>Securely fetching patient records...</p>
+            </div>
+        );
+    }
 
     return (
         <div className="app-container">
             <aside className="sidebar">
                 <nav>
-                    <Sidebar />
+                    <Sidebar patients={patients} setPatient={setPatient} currentPatient={patient} />
                 </nav>
             </aside>
 
